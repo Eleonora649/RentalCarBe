@@ -1,0 +1,14 @@
+<br><br>
+<table class="table"> 
+    <tr>
+        <th *ngFor="let header of tableConfig.headers"> {{ header.label }} </th>
+        <th> Action </th>
+    </tr>
+    <tr *ngFor="let d of data">
+        <td *ngFor = "let key of keys"> {{ d [key] }} </td>
+        <td> 
+            <button type="button" class="btn btn-primary" (click)=update(d)> Edit </button> &nbsp;
+            <button type="button" class="btn btn-primary" (click)=delete(d)> Delete </button> 
+        </td>
+    </tr>
+</table>    

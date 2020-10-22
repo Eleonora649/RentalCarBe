@@ -1,0 +1,23 @@
+.header {
+    background: #1abc9c;
+}
+
+.navbar {
+    width: 100%;
+    overflow: auto;
+}
+  
+.navbar a {
+    float: left;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+}
+  
+@media screen and (max-width: 500px) {
+    .navbar a {
+      float: none;
+      display: block;
+    }
+}
