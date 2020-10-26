@@ -1,4 +1,15 @@
-<app-header></app-header>
-    <h3> {{title}} </h3>
-    <router-outlet></router-outlet>
-<app-footer></app-footer>
+<div> 
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <a href="#" class="navbar-brand"> Rental Car</a> 
+        <div class="navbar-brand">
+            <a routerLink="cars/list-cars"> Catalog </a> &nbsp;
+            <a routerLink="users/register" class="nav-link"> Sign-in</a> &nbsp;
+            <a routerLink="login" class="nav-link"> Login </a> 
+        </div>
+    </nav>  
+
+    <div class="container mt-3">
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+</div>

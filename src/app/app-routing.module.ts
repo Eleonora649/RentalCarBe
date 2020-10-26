@@ -8,14 +8,14 @@ import { LoginComponent } from './users/login/login.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
 
 const appRoutes: Routes = [
-    {path: 'userform', component: UserFormComponent},
-    {path: 'carform', component: CarFormComponent},
-    {path: 'mytable', component: MyTableComponent },
-    {path: 'login', component: LoginComponent},
-    {path: 'carlist', component: ListCarsComponent},
-    {path: 'userlist', component: ListUsersComponent},
-    {path: '',   redirectTo: '/', pathMatch: 'full'}
-  ]
+  {path: '',   redirectTo: '/', pathMatch: 'full'},
+  {path: 'users/register', component: UserFormComponent},
+  {path: 'cars', component: CarFormComponent},
+  {path: 'mytable', component: MyTableComponent },
+  {path: 'login', component: LoginComponent},
+  {path: 'cars/list-cars', component: ListCarsComponent},
+  {path: 'userlist', component: ListUsersComponent}
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
