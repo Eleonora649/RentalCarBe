@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Car } from '../car';
+import { CarService } from '../car.service';
 
 @Component({
   selector: 'app-car-form',
@@ -8,19 +10,18 @@ import { Car } from '../car';
 })
 export class CarFormComponent implements OnInit {
   car: Car;
-  submitted = false;
 
-  onSubmit() { 
-    this.submitted = true; 
-    console.log("Car: " + this.car.model +" " + this.car.manufacturer)
+  constructor(
+      private route: ActivatedRoute, 
+      private router: Router, 
+      private carService: CarService) { 
+      this.car = new Car();
   }
-
-  constructor() { }
 
   ngOnInit(): void {
-    this.car = new Car({
-      model:"", license:"", manufacturer:"", carRegistration:""
-    })
-  }
+    }
 
+  onSubmit() { 
+    this.carService.create(this.car).subscribe(result => console.log("Automobile aggiunta con successo"));
+  }
 }

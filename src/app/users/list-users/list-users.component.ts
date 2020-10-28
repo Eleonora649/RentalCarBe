@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { User } from '../user';
-import { MyTableConfig } from 'src/app/components/table/table-config.component';
 import { UserService } from '../user.service';
-import { MyTableComponent } from 'src/app/components/table/table.component';
 
 @Component({
   selector: 'app-list-users',
@@ -11,19 +9,38 @@ import { MyTableComponent } from 'src/app/components/table/table.component';
   styleUrls: ['./list-users.component.css']
 })
 export class ListUsersComponent implements OnInit {
-  data: User[];
-  config: MyTableConfig; 
-  button: MyTableComponent;
+  user: User[];
+ // config: MyTableConfig; 
 
-  constructor(private userService: UserService){}
+  constructor(private userService: UserService, private route: Router){}
   
-  ngOnInit() {
-      this.data = this.userService.getUser();
-      console.log(this.data);
-
-      this.config = this.userService.getHeadersUser();
+  ngOnInit(): void {
+      this.retrieveUsers();
   }
 
-  
+  retrieveUsers(): void {
+    this.userService.getAll().subscribe( d => {
+          this.user = d;
+          console.log(d);
+        },
+        error => { console.log(error);
+    });
+  }
+
+  delete(id: number) {
+    this.userService.delete(id).subscribe( data => {
+      console.log(this.userService.get(id));
+      this.route.navigate(['/userlist']);
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  update(user: User) {
+    this.route.navigate(['users']);
+    this.userService.update(user).subscribe ( result => {
+        console.log(result);
+      })
+  }
 
 }

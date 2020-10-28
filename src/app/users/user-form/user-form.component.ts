@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ButtonComponent } from 'src/app/components/button/button.component';
 import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-form',
@@ -9,20 +9,16 @@ import { User } from '../user';
 })
 export class UserFormComponent implements OnInit{
   user: User;
-  submitted = false;
-  button: ButtonComponent;
+
+  constructor(
+      private userService: UserService) { 
+      this.user = new User();
+  }
+
+  ngOnInit(): void {
+    }
 
   onSubmit() { 
-    this.submitted = true; 
-    console.log( this.user)
+    this.userService.create(this.user).subscribe(result => console.log("Utente aggiunto con successo"));
   }
-
-  constructor() {}
-  
-  ngOnInit() {
-    this.user = new User({
-      name:"", surname:"", email:"", password:""
-    })
-  }
-
 }

@@ -1,44 +1,46 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-
-import { USER } from './mock-user';
 import { User } from './user';
-import { HEADERSUSER } from './mock-headers-user';
-import { MyTableConfig } from '../components/table/table-config.component';
+import { Identifiers } from '@angular/compiler';
+
+const baseUrl = 'http://localhost:8080/RentalCar/users';
+const httpOptions = { 
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: ''
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private http: HttpClient) { }
-
-  user: User[];
-
-  getUser(): User[] {
-    console.log(USER);
-    return USER;  
+  constructor(public http: HttpClient) { }
+  user: User;
+  
+  getAll(): Observable<any> {
+    return this.http.get<User[]>(`${baseUrl}/list-customers`, httpOptions);
+  }
+  
+  get(id): Observable<User> {
+    return this.http.get<User>(`${baseUrl}/list-customers/${id}`, httpOptions);
   }
 
-  getHeadersUser(): MyTableConfig {
-    return HEADERSUSER;
-}
-
-}
-  /*deleteUser(id){
-    for(let i = 0; i < this.user.length; ++i){
-      if (this.user[i].id === id) {
-          console.log(this.user[i]);
-          this.user.splice(i,1);
-      }
-      console.log("Utente eliminato");
+  getUserProfile(id): Observable<any> {
+    return this.http.get(`${baseUrl}/profile/${id}`, httpOptions);
   }
-  updateUser(id){
-    for(let i = 0; i < this.user.length; ++i){
-      if (this.user[i].id === id) {
-        console.log(this.user[i]);
-      }
-    }
-  }*/
+
+  create(user: User): Observable<User> {
+    return this.http.post<User>(`${baseUrl}/register`, user, httpOptions);
+  }
+
+  update(user): Observable<any> {
+    return this.http.put<User>(baseUrl, user);
+  }
+
+  delete(id): Observable<any> {
+    return this.http.delete<User>(`${baseUrl}/delete-customers/${id}`);
+  }
+}

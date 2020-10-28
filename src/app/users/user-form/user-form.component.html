@@ -1,35 +1,29 @@
-<div class="container">
-  <div class="col-md-9" [hidden]="submitted">
-  <h3> Register to access:</h3>
-    <form novalidate (ngSubmit)="onSubmit()" #signinForm="ngForm">
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
       <div class="form-group">
-        
+        <h3> Register to access:</h3>
         <label for="name"> Name: </label>
-        <input type="text" [(ngModel)]="user.name" name="name" #name="ngModel" id="name" placeholder="Enter name" required class="form-control"/>
-                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-                  Name is required
-                </div>
-
+        <input type="text" class="form-control" id="name" required [(ngModel)]="user.name" name="name" placeholder="Enter name" #name="ngModel"/>
+      </div> 
+      <div class="form-group">
         <label for="surname"> Surname: </label>
-        <input type="text" [(ngModel)]="user.surname" name="surname" id="surname" placeholder="Enter surname" required class="form-control"/>
-  
-        <label for="email"> Email: </label>
-        <input type="email" [(ngModel)]="user.email" name="email"
-                  id="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
-                  placeholder="example: mario@gmail.com" required class="form-control"/>
-        
-              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-                <div *ngIf = "email.errors?.required"> Email field can't be blank </div>
-                <div *ngIf = "email.errors?.pattern && email.touched">  The email id doesn't seem right </div>
-              </div>
- 
-        <label for="password"> Password: </label>
-        <input type="password" [(ngModel)]="user.password" name="password" id="password" placeholder="password" required class="form-control"/> <br>
-           
-        <button type="submit" class="btn btn-primary" [disabled]="!signinForm.form.valid">Submit</button>
-
+        <input type="text" class="form-control" id="surname" required [(ngModel)]="user.surname" name="surname" placeholder="Enter surname" #surname="ngModel"/>
       </div>
+      <div class="form-group">
+        <label for="date"> Date of birth: </label>
+        <input type="text" class="form-control" id="date" required [(ngModel)]="user.date" name="date" placeholder="gg/MM/yyyy" #date="ngModel"/>
+      </div>
+      <div class="form-group"> 
+        <label for="email"> Email: </label>
+        <input type="email" class="form-control" id="email" required 
+              [(ngModel)]="user.email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="example: mario@gmail.com" #email="ngModel"/>
+      </div>
+      <div class="form-group">
+        <label for="password"> Password: </label>
+        <input type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password" placeholder="password" #password="ngModel"/> <br>
+      </div>
+      <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-info">Submit</button>
     </form>
-      {{user | json}} <br>
-  </div>
+  </div>      
 </div>

@@ -1,14 +1,15 @@
 export class Car {
 
     id: number;
-    model: string;
-    license: string;
+    yearOfRegistration: number;
     manufacturer: string;
-    carRegistration: number;
-    //category: Category;
+    carModel: string;
+    carLicensePlat: string;
+    category: {
+        idCategory: number;
+        name: string;
+        cars: null;
+    };
 
-    constructor(values: Object = {}) {
-        Object.assign(this, values);
-    }
 }
 

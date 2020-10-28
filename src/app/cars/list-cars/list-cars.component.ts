@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Car } from '../car';
-import { MyTableConfig } from 'src/app/components/table/table-config.component';
 import { CarService } from '../car.service';
 
 @Component({
@@ -10,16 +9,34 @@ import { CarService } from '../car.service';
   styleUrls: ['./list-cars.component.css']
 })
 export class ListCarsComponent implements OnInit {
-  data: Car[];
-  config: MyTableConfig; 
+  car: Car[];
+//config: MyTableConfig; 
 
   constructor(private carService: CarService) { }
 
   ngOnInit(): void {
-    this.data = this.carService.getCar();
-    console.log(this.data);
+    this.retrieveCars();
+  }
   
-    this.config = this.carService.getHeadersCar();
+  retrieveCars(): void {
+    this.carService.getAll().subscribe( cars => {
+      this.car = cars;
+      console.log(cars);  
+    },
+      error => {console.log(error);
+      });
+  }
+
+  delete(id) {
+    this.carService.delete(this.carService.get(id)).subscribe ( result => {
+      console.log(result);
+    })
+  }
+
+  update(car: Car) {
+    this.carService.update(car).subscribe ( result => {
+        console.log(result);
+      })
   }
 
 }
