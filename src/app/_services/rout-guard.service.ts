@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -19,7 +20,7 @@ export class RouteGuardService implements CanActivate  {
 
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(this.token);
-    this.rolesAuth = decodedToken['authority'];
+    this.rolesAuth = decodedToken['authorization'];
 
     if (!this.tokenService.loggedUser())
     {
@@ -29,9 +30,9 @@ export class RouteGuardService implements CanActivate  {
     }
     else 
     {
-      if (route.data.roles == null || route.data.roles.length === 0)
+      if (route.data.rolesAuth == null || route.data.rolesAuth.length === 0)
         return true;
-      else if (this.rolesAuth.some(r=> route.data.roles.includes(r))) {
+      else if (this.rolesAuth.some(r=> route.data.role.includes(r))) {
         console.log(this.rolesAuth);
         return true;
       } 

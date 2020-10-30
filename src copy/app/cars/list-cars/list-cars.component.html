@@ -1,0 +1,25 @@
+<div class="col-md-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"> Model </th>
+                <th scope="col"> Manufacturer </th>
+                <th scope="col"> Year of registration </th>
+                <th scope="col"> Category </th>
+                <th scope="col"> Action </th>
+            </tr>
+        </thead> 
+        <tbody>
+            <tr *ngFor="let d of car" scope="row">
+                <td> {{ d.carModel }} </td>
+                <td> {{ d.manufacturer }} </td>
+                <td> {{ d.yearOfRegistration }} </td>
+                <td> {{ d.category.name }} </td>
+                <td> 
+                    <button type="button" class="btn btn-primary" (click)=update(d)> Edit </button> &nbsp;
+                    <button type="button" class="btn btn-primary" (click)="delete(d)"> Delete </button> 
+                </td>
+            </tr>
+        </tbody>
+    </table>    
+</div>

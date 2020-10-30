@@ -8,18 +8,20 @@ import { UserService } from '../user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
-  content = '';
   user: User;
+
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUserProfile(this.user).subscribe(
+    this.getUser();
+  }
+
+  getUser() {
+    this.userService.getUserProfile(this.user.email).subscribe(
       data => {
-        this.content = data;
+        this.user = data;
       },
-      err => {
-        this.content = JSON.parse(err.error).message;
+        error => { console.log(error);
       }
     );
   }

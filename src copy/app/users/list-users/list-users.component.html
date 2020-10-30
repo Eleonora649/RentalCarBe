@@ -1,0 +1,25 @@
+<div class="col-md-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"> Name </th>
+                <th scope="col"> Surname </th>
+                <th scope="col"> Date of birth </th>
+                <th scope="col"> Email </th>
+                <th scope="col"> Action </th>
+            </tr>
+        </thead> 
+        <tbody>
+            <tr *ngFor="let d of user" scope="row">
+                <td> {{ d.name }} </td>
+                <td> {{ d.surname }} </td>
+                <td> {{ d.date }} </td>
+                <td> {{ d.email }} </td>
+                <td> 
+                    <button type="button" class="btn btn-primary" (click)=update(d)> Edit </button> &nbsp;
+                    <button type="button" class="btn btn-primary" (click)=delete(d.id)> Delete </button> 
+                </td>
+            </tr>
+        </tbody>
+    </table>    
+</div>

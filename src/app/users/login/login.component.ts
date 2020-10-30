@@ -10,7 +10,6 @@ import { AuthService } from '../../_services/auth.service';
 export class LoginComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
- // isLoginFailed = false;
   errorMessage = 'Wrong email or password';
 
   constructor(private route: Router, private authService: AuthService) { }
@@ -18,14 +17,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   
   }
-
   onSubmit(): void {
     this.authService.login(this.form).subscribe(  
       data => {
         console.log(data);
         this.isLoggedIn = true;
-        //this.authService.saveToken(sessionStorage.getItem(data.token));
-        //this.authService.saveUser(sessionStorage.getItem(data.email));
         this.route.navigate(['/']);
       },
       err => {

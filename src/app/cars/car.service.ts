@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { Car } from './car';
-import { MyTableConfig } from '../components/table/table-config.component';
 
 const baseUrl = 'http://localhost:8080/RentalCar/cars';
 
 const httpOptions = { 
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'TOKEN_HEADER_KEY'
+    'Content-Type': 'application/json'
   })
 };
 
@@ -28,15 +25,15 @@ export class CarService {
     return this.httpClient.get<Car>(`${baseUrl}/list-cars/${id}`);
   }
 
-  create(car: Car): Observable<Car> {
+  create(car): Observable<Car> {
     return this.httpClient.post<Car>(`${baseUrl}/register`, car, httpOptions);
   }
 
   update(car: Car): Observable<Car> {
-    return this.httpClient.put<Car>(baseUrl, car);
+    return this.httpClient.put<Car>(`${baseUrl}/${car.idCar}`, car);
   }
 
-  delete(id): Observable<Car> {
+  delete(id): Observable<any> {
     return this.httpClient.delete<Car>(`${baseUrl}/delete-cars/${id}`);
   }
 }

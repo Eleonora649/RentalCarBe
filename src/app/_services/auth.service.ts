@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../users/user';
 import { map } from 'rxjs/operators';
 
-const baseUrl = 'http://localhost:8080/RentalCar/login';
+const baseUrl = 'http://localhost:8080/RentalCar';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 }
@@ -18,12 +18,12 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
   login(credentials: User): Observable<any> {
-    return this.httpClient.post(baseUrl, credentials, httpOptions).pipe
+    return this.httpClient.post(`${baseUrl}/login`, credentials, httpOptions).pipe
     (map(
         data => {
           sessionStorage.setItem(CONST_USER, credentials.email);
           sessionStorage.setItem(CONST_AUTH_TOKEN, data.token);
-          //console.log(data);
+          //  console.log(data);
           return data;
         }
       )
@@ -32,8 +32,8 @@ export class AuthService {
 
   getAuthToken(): string {
     if (this.loggedUser()) {
-      console.log("token");
-    console.log(sessionStorage.getItem(CONST_AUTH_TOKEN));
+      console.log("sono nel metodo getAuthToken()");
+      console.log(sessionStorage.getItem(CONST_AUTH_TOKEN));
       return sessionStorage.getItem(CONST_AUTH_TOKEN);
     } else
       return "";
@@ -59,8 +59,13 @@ export class AuthService {
     return (sessionStorage.getItem(CONST_USER) != null) ? true : false;
   }
 
-  clearAll() {
+  isLoggedOut() {
+    return !this.isLogged();
+  }
+
+  logout() {
     sessionStorage.removeItem(CONST_USER);
     sessionStorage.removeItem(CONST_AUTH_TOKEN);
   }
+
 }

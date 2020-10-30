@@ -3,15 +3,30 @@ import { HTTP_INTERCEPTORS, HttpEvent } from '@angular/common/http';
 import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../_services/auth.service';
-import { LoginComponent } from '../users/login/login.component';
 
-export const TOKEN_HEADER_KEY = 'Authorization';
-
+//export const TOKEN_HEADER_KEY = 'Authorization';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) { }
+ 
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        
+    if (this.authService.loggedUser()) {
+        const token = this.authService.getAuthToken();
+        request = request.clone({
+                          setHeaders: 
+                          {
+                              Authorization: `Bearer ${token}`
+                          }});
+    }console.log(request);
+   return next.handle(request);
+  }
+}  
+export const authInterceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+];
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+/*intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
     let AuthToken = this.authService.getAuthToken();
     //let User = this.authService.loggedUser();
@@ -21,8 +36,4 @@ export class AuthInterceptor implements HttpInterceptor {
       console.log(req);
     }
       return next.handle(req);
-    }
-}
-export const authInterceptorProviders = [
-  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-];
+    }*/

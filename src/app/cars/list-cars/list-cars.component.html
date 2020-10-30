@@ -1,10 +1,14 @@
 <div class="col-md-12">
+    <div>
+        <button type="button" class="btn btn-primary" (click)=createBooking() style="position: absolute; right: 25px;"> Add car </button>
+    </div> <br><br>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col"> Model </th>
                 <th scope="col"> Manufacturer </th>
                 <th scope="col"> Year of registration </th>
+                <th scope="col"> License </th>
                 <th scope="col"> Category </th>
                 <th scope="col"> Action </th>
             </tr>
@@ -14,10 +18,12 @@
                 <td> {{ d.carModel }} </td>
                 <td> {{ d.manufacturer }} </td>
                 <td> {{ d.yearOfRegistration }} </td>
+                <td> {{ d.carLicensePlate }} </td>
                 <td> {{ d.category.name }} </td>
                 <td> 
+                    <button type="button" class="btn btn-primary" (click)=createBooking()> Book now</button> &nbsp;
                     <button type="button" class="btn btn-primary" (click)=update(d)> Edit </button> &nbsp;
-                    <button type="button" class="btn btn-primary" (click)="delete(d)"> Delete </button> 
+                    <button type="button" class="btn btn-danger" (click)=delete(d.idCar)> Delete </button> 
                 </td>
             </tr>
         </tbody>

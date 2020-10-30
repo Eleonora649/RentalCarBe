@@ -10,7 +10,6 @@ import { UserService } from '../user.service';
 })
 export class ListUsersComponent implements OnInit {
   user: User[];
- // config: MyTableConfig; 
 
   constructor(private userService: UserService, private route: Router){}
   
@@ -27,20 +26,20 @@ export class ListUsersComponent implements OnInit {
     });
   }
 
-  delete(id: number) {
-    this.userService.delete(id).subscribe( data => {
-      console.log(this.userService.get(id));
-      this.route.navigate(['/userlist']);
-    }, error => {
-      console.log(error);
-    })
-  }
-
-  update(user: User) {
-    this.route.navigate(['users']);
-    this.userService.update(user).subscribe ( result => {
-        console.log(result);
+  delete(id) {      
+    this.userService.delete(id).subscribe( d => {
+      console.log(d);
+      this.userService.getAll().subscribe( users => {
+        this.user = users;
       })
+      }, error => {
+          console.log(error);
+      }
+    )
   }
-
+ 
+  update(user) {
+    localStorage.setItem("updateUser", user);
+    this.route.navigate(['useredit']);
+  }
 }
