@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -11,22 +11,23 @@ import { UserService } from '../user.service';
 export class EditFormComponent implements OnInit {
   user: User;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: ActivatedRoute, private route: Router) { }
 
   ngOnInit(): void {
-    this.user = new User();
+    
+    this.userService.get(this.router.snapshot.params['userId']).subscribe( 
+      res => { 
+        this.user = res;
+        console.log(res);
+      })
   }
-  
-  save(){
+
+  save() {
     this.userService.update(this.user).subscribe(
-      edit => {
-          this.user = edit;
-          console.log("Utente modificato");
-          this.router.navigate(['userlist']);
-        }, 
-      error => {
-        console.log(error.error);
-      }
-    )
+      response => { 
+        console.log(response);
+        this.user = response;
+        this.route.navigate(['userlist']);
+     })
   }
 }

@@ -21,8 +21,9 @@ export class UserFormComponent implements OnInit{
   onSubmit() { 
     this.userService.create(this.user).subscribe(
       result => {
+        this.user = result;
         console.log("Utente aggiunto con successo");
-        this.route.navigate(['home']);
+        this.route.navigate(['profile']);
     })
   }
 }

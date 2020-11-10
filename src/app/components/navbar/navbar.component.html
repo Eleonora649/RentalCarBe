@@ -1,10 +1,17 @@
-
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <a href="/home" class="navbar-brand"> Rental Car</a> 
-    <div class="navbar-brand">
-        <a class="nav-link" routerLink="carslist"> Catalog </a> &nbsp;
-        <a class="nav-link" routerLink="users"> Sign-in</a> &nbsp;
-        <a class="nav-link" routerLink="login"> Login </a> 
-        <a class="nav-link" routerLink="profile"> Profile </a>
+<div class="navbar">
+    <div class="home"> RentalCar </div>
+    <div class="menu"> 
+      <ul>
+        <li><a class="nav-link" routerLink="/home"> Home </a></li>
+        <li><a class="nav-link" routerLink="/carslist"> Cars </a></li>
+        <li><a class="nav-link" routerLink="/userlist"> Customers </a></li>
+      </ul>
     </div>
-</nav>  
+    <div class="access">
+      <ul>
+        <li><a class="dropdown-item" href="/login"> Sign in </a></li>
+        <li><a class="dropdown-item" href="/users"> Sign up </a></li>
+        <li><a class="dropdown-item" href="/logout"> Logout </a></li>
+      </ul>
+    </div>
+</div>

@@ -8,8 +8,7 @@ const baseUrl = 'http://localhost:8080/RentalCar/bookings';
 
 const httpOptions = { 
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'TOKEN_HEADER_KEY'
+    'Content-Type': 'application/json'
   })
 };
 
@@ -28,14 +27,14 @@ export class BookingsService {
   }
 
   create(booking: Booking): Observable<Booking> {
-    return this.httpClient.post<Booking>(baseUrl, booking, httpOptions);
+    return this.httpClient.post<Booking>(baseUrl, booking);
   }
 
-  update(booking: Booking): Observable<Booking> {
+  update(booking): Observable<Booking> {
     return this.httpClient.put<Booking>(baseUrl, booking);
   }
 
-  delete(id): Observable<Booking> {
+  delete(id): Observable<any> {
     return this.httpClient.delete<Booking>(`${baseUrl}/delete-bookings/${id}`);
   }
 }

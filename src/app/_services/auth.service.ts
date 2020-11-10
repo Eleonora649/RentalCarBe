@@ -23,16 +23,23 @@ export class AuthService {
         data => {
           sessionStorage.setItem(CONST_USER, credentials.email);
           sessionStorage.setItem(CONST_AUTH_TOKEN, data.token);
-          //  console.log(data);
           return data;
         }
       )
     );
-  }   
+  } 
+  
+  getUser(): string {
+    if(this.loggedUser()) {
+      console.log(sessionStorage.getItem(CONST_USER));
+      return sessionStorage.getItem(CONST_USER);
+    } else {
+      return null;
+    }
+  }  
 
   getAuthToken(): string {
     if (this.loggedUser()) {
-      console.log("sono nel metodo getAuthToken()");
       console.log(sessionStorage.getItem(CONST_AUTH_TOKEN));
       return sessionStorage.getItem(CONST_AUTH_TOKEN);
     } else
@@ -43,6 +50,10 @@ export class AuthService {
     //sessionStorage.removeItem(CONST_USER);
     let user = sessionStorage.getItem(CONST_USER);
     return (sessionStorage.getItem(CONST_USER) != null) ? user : "";
+  }
+
+  getUserLogged() {
+    sessionStorage.getItem(CONST_AUTH_TOKEN);
   }
 
   saveToken(token: string) {
@@ -63,9 +74,8 @@ export class AuthService {
     return !this.isLogged();
   }
 
-  logout() {
+  clear() {
     sessionStorage.removeItem(CONST_USER);
     sessionStorage.removeItem(CONST_AUTH_TOKEN);
   }
-
 }

@@ -1,35 +1,31 @@
-<div class="col-md-3">
-    <form #update="ngForm" (ngSubmit)="save()">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="name"> Name </label>
-                <input type="text" class="form-control" id="name" required [(ngModel)]="user.name" name="name">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="Surname"> Surname </label>
-                <input type="text" class="form-control" id="surname" required [(ngModel)]="user.surname" name="surname">
-            </div>
+<div class="card my-5">
+    <div class="card-body">
+      <form #userForm="ngForm" >
+        <h3> Modifica:</h3>
+        <div class="form-group">
+          <label for="name"> Name: </label>
+          <input type="text" class="form-control" id="name" required [(ngModel)]="user.name" name="name" #name="ngModel"/>
+        </div> 
+        <div class="form-group">
+          <label for="surname"> Surname: </label>
+          <input type="text" class="form-control" id="surname" required [(ngModel)]="user.surname" name="surname" #surname="ngModel"/>
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="dateOfBirth"> Date of birth </label>
-                <input type="date" class="form-control" id="dateOfBirth" required [(ngModel)]="user.dateOfBirth" name="dateOfBirth" >
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="email"> Email </label>
-                    <input type="email" class="form-control" id="email" required [(ngModel)]="user.email" name="email">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="password"> Password </label>
-                    <input type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password">
-                </div>
-            </div>
+        <div class="form-group">
+          <label for="date"> Date of birth: </label>
+          <input type="text" class="form-control" id="date" required [(ngModel)]="user.date" name="date" #date="ngModel"/>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <button type="submit" class="btn btn-primary" (click)="save()"> Save </button>
-            </div>
+        <div class="form-group"> 
+          <label for="email"> Email: </label>
+          <input type="email" class="form-control" id="email" required 
+                [(ngModel)]="user.email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #email="ngModel"/>
         </div>
-    </form>
-</div>
+        <div class="form-group">
+          <label for="password"> Password: </label>
+          <input type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password" #password="ngModel"/> <br>
+        </div>
+        <div class="form-group">
+          <button type="button" (click)=save() [disabled]="!userForm.form.valid" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>      
+  </div>

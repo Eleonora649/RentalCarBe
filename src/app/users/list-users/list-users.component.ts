@@ -3,6 +3,11 @@ import { Router } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
+export class ApiMsg {
+  constructor(
+    public code: string, 
+    public message: string) {}
+}
 @Component({
   selector: 'app-list-users',
   templateUrl: './list-users.component.html',
@@ -10,11 +15,16 @@ import { UserService } from '../user.service';
 })
 export class ListUsersComponent implements OnInit {
   user: User[];
+  row = 8;
+  pag = 1;
+
+  apiMsg: ApiMsg;
+  mess: string;
 
   constructor(private userService: UserService, private route: Router){}
   
   ngOnInit(): void {
-      this.retrieveUsers();
+    this.retrieveUsers();
   }
 
   retrieveUsers(): void {
@@ -26,12 +36,19 @@ export class ListUsersComponent implements OnInit {
     });
   }
 
-  delete(id) {      
-    this.userService.delete(id).subscribe( d => {
-      console.log(d);
-      this.userService.getAll().subscribe( users => {
-        this.user = users;
-      })
+  refresh() {
+    this.mess = "";
+    this.userService.getAll().subscribe( users => {
+      this.user = users;
+    })
+  }
+
+  delete(id: string) {      
+    this.userService.delete(id).subscribe( 
+      response => {
+        this.refresh();
+        this.apiMsg = response;
+        this.mess = this.apiMsg.message;
       }, error => {
           console.log(error);
       }
@@ -39,7 +56,7 @@ export class ListUsersComponent implements OnInit {
   }
  
   update(user) {
-    localStorage.setItem("updateUser", user);
-    this.route.navigate(['useredit']);
+    console.log(`Modifica utente ${user.id}`)
+    this.route.navigate(['useredit', user.id]);
   }
 }

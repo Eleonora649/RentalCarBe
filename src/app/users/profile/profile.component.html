@@ -10,11 +10,11 @@
             </tr>
         </thead> 
         <tbody>
-            <tr *ngFor="let d of currentUser" scope="row">
-                <td> {{ d.name }} </td>
-                <td> {{ d.surname }} </td>
-                <td> {{ d.date }} </td>
-                <td> {{ d.email }} </td>
+            <tr scope="row">
+                <td> {{ user.name }} </td>
+                <td> {{ user.surname }} </td>
+                <td> {{ user.date }} </td>
+                <td> {{ user.email }} </td>
                 <td> 
                     <button type="button" class="btn btn-primary" (click)=update(d)> Edit </button> &nbsp;
                 </td>

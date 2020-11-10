@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Booking } from 'src/app/bookings/booking';
-import { BookingsService } from 'src/app/bookings/bookings.service';
+import { User } from 'src/app/users/user';
+import { AuthService } from 'src/app/_services/auth.service';
 import { Car } from '../car';
 import { CarService } from '../car.service';
 
@@ -12,10 +13,13 @@ import { CarService } from '../car.service';
 })
 export class ListCarsComponent implements OnInit {
   car: Car[];
+  booking: Booking;
 
-  constructor(private carService: CarService, private route: Router, private bookingService: BookingsService) { }
+  constructor(
+    private carService: CarService, private route: Router) { }
 
   ngOnInit(): void {
+    this.booking = new Booking();
     this.retrieveCars();
   }
   
@@ -41,16 +45,15 @@ export class ListCarsComponent implements OnInit {
   }
 
   update(car: Car) {
-    this.carService.update(car).subscribe ( result => {
-        for(let i=0; i<this.car.length; i++) {
-          this.carService.get(car.idCar);
-          this.car[i] = result;
-          console.log(result);
-        }
-      })
+    this.route.navigate(['caredit', car.idCar]);
   }
 
-  createBooking() {
-    this.route.navigate(['bookings']);
+  createBooking(car) {
+    this.booking.car = car;
+    this.route.navigateByUrl('/bookings', { state: { data: this.booking } } );
+  }
+
+  addCar() {
+    this.route.navigate(['cars'])
   }
 }

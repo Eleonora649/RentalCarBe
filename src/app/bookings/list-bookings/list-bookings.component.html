@@ -1,4 +1,5 @@
 <div class="col-md-12">
+    <h3> Prenotazioni: </h3> <br>
     <table class="table">
         <thead>
             <tr>
@@ -6,17 +7,18 @@
                 <th scope="col"> End date </th>
                 <th scope="col"> User </th>
                 <th scope="col"> Car </th>
-                <th scope="col"> Action </th>
+                <th></th>
             </tr>
         </thead> 
         <tbody>
             <tr *ngFor="let d of bookings" scope="row">
-                <td> {{ d.startOfBooking }} </td>
+                <td> {{ d.startBooking }} </td>
                 <td> {{ d.endOfBooking }} </td>
-                <td> {{ d.user.name }} </td>
-                <td> {{ d.car.model }} </td>
+                <td> {{ d.user.name }} {{ d.user.surname }} </td>
+                <td> {{ d.car.manufacturer }} {{ d.car.carModel }} {{ d.car.carLicensePlate}} </td>
                 <td> 
-                    <button type="button" class="btn btn-primary" (click)=addBooking()> Book now</button> &nbsp;
+                    <button type="button" class="btn btn-primary" (click)=edit(d)> Edit </button> &nbsp;
+                    <button type="button" class="btn btn-danger" (click)=delete(d.id)> Delete </button> 
                 </td>
             </tr>
         </tbody>
