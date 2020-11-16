@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="title">
+        <h3> Riepilogo: </h3> 
+    </div>
+        
+    <table class="table">
+        <tr>
+            <th> Date </th>
+            <th> Car </th>
+            <th> User </th>
+        </tr>
+            
+        <tr>
+            <td> {{ booking.startBooking }} - {{ booking.endOfBooking }} </td>
+            <td> {{ booking.car.manufacturer }}, {{ booking.car.carModel }} </td>
+            <td> {{ booking.user.name }} {{ booking.user.surname }} </td>
+        </tr>
+    
+        <button type="button" class="btn btn-primary" (click)=createBooking()> Book now </button>
+    </table>
+
+</div>
+    
+    

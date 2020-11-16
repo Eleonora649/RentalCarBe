@@ -1,34 +1,35 @@
-<div class="col-md-12">
-  <div class="card card-container">
-    <!--<img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card"/>-->
-    <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <h3> Login page </h3>
-      <div class="form-group">
+<div class="flexForm">
+  
+  <div class="title">
+    <h3> Login page </h3> 
+  </div>
+
+  <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm"> 
+  
+      <div class="inputForm">
         <label for="email">Email</label>
         <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required #email="ngModel"/>
-        <div class="alert alert-danger" role="alert" *ngIf="f.submitted && email.invalid">
-          Email is required!
-        </div>
+              <div class="alert alert-danger" role="alert" *ngIf="f.submitted && email.invalid"> Email is required! </div>
       </div>
-      <div class="form-group">
+      
+      <div class="inputForm">
         <label for="password">Password</label>
         <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required #password="ngModel"/>
-        <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
-          <div *ngIf="password.errors.required">Password is required</div>
-        </div>
-      </div><br>
-      <div class="form-group">
-        <button class="btn btn-primary btn btn-primary"> Login </button>
+              <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid"> <div *ngIf="password.errors.required">Password is required</div> </div>
       </div>
+
+      <div class="inputForm">
+        <button class="btn btn-primary"> Login </button>
+      </div>
+
       <div class="form-group">
         <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
           Login failed:
         </div>
       </div>
-    </form>
+  </form>
 
     <div class="alert alert-success" *ngIf="isLoggedIn">
       Logged in successfully.
     </div>
-  </div>
 </div>

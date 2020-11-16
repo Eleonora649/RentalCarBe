@@ -1,3 +1,16 @@
-input[type=text], input[type=email], input[type=password] {
-    width: 50%;  
+.flexForm {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	padding: 120px;	
+}
+
+.inputForm {
+    padding: 20px;
+    width: 350px;
+	height: 90px;
+}
+
+.button {
+	margin-top: 15px;
 }

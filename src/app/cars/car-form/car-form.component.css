@@ -1,0 +1,17 @@
+.flexForm {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	padding: 120px;	
+}
+
+.inputForm {
+    padding: 20px;
+    width: 350px;
+	height: 90px;
+	flex-basis: auto;
+}
+
+.button {
+	margin-top: 15px;
+}

@@ -3,10 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../users/user';
 import { map } from 'rxjs/operators';
+import { Roles } from '../users/roles';
 
 const baseUrl = 'http://localhost:8080/RentalCar';
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
 }
 export const CONST_USER = "currentUser";
 export const CONST_AUTH_TOKEN = "token";
@@ -23,6 +26,7 @@ export class AuthService {
         data => {
           sessionStorage.setItem(CONST_USER, credentials.email);
           sessionStorage.setItem(CONST_AUTH_TOKEN, data.token);
+          //console.log(data);
           return data;
         }
       )
@@ -31,7 +35,6 @@ export class AuthService {
   
   getUser(): string {
     if(this.loggedUser()) {
-      console.log(sessionStorage.getItem(CONST_USER));
       return sessionStorage.getItem(CONST_USER);
     } else {
       return null;
@@ -40,7 +43,7 @@ export class AuthService {
 
   getAuthToken(): string {
     if (this.loggedUser()) {
-      console.log(sessionStorage.getItem(CONST_AUTH_TOKEN));
+      //console.log(sessionStorage.getItem(CONST_AUTH_TOKEN));
       return sessionStorage.getItem(CONST_AUTH_TOKEN);
     } else
       return "";
@@ -52,10 +55,11 @@ export class AuthService {
     return (sessionStorage.getItem(CONST_USER) != null) ? user : "";
   }
 
-  getUserLogged() {
-    sessionStorage.getItem(CONST_AUTH_TOKEN);
+  clear() {
+    sessionStorage.removeItem(CONST_USER);
+    sessionStorage.removeItem(CONST_AUTH_TOKEN);
   }
-
+  
   saveToken(token: string) {
     sessionStorage.removeItem(CONST_AUTH_TOKEN);
     sessionStorage.setItem(CONST_AUTH_TOKEN, token);
@@ -74,8 +78,4 @@ export class AuthService {
     return !this.isLogged();
   }
 
-  clear() {
-    sessionStorage.removeItem(CONST_USER);
-    sessionStorage.removeItem(CONST_AUTH_TOKEN);
-  }
 }

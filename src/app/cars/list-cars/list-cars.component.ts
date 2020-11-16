@@ -14,6 +14,8 @@ import { CarService } from '../car.service';
 export class ListCarsComponent implements OnInit {
   car: Car[];
   booking: Booking;
+  row = 8;
+  pag = 1;
 
   constructor(
     private carService: CarService, private route: Router) { }

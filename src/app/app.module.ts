@@ -17,10 +17,9 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './users/login/login.component';
 import { ProfileComponent } from './users/profile/profile.component';
-
+import { NewBookingComponent } from './bookings/new-booking/new-booking.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { CarFormComponent } from './cars/car-form/car-form.component';
-import { BookingsComponent } from './bookings/newBooking/bookings.component';
 import { ListUsersComponent } from './users/list-users/list-users.component';
 import { ListCarsComponent } from './cars/list-cars/list-cars.component';
 import { ListBookingsComponent } from './bookings/list-bookings/list-bookings.component';
@@ -34,21 +33,25 @@ import { EditBookingComponent } from './bookings/edit-booking/edit-booking.compo
 
 @NgModule({
   declarations: [
-    AppComponent, NavbarComponent,
-    LoginComponent, HomeComponent, ProfileComponent, 
-    UserFormComponent, CarFormComponent, 
-    BookingsComponent, ListUsersComponent, 
-    ListCarsComponent, ListBookingsComponent, 
-    EditFormComponent, EditCarFormComponent,
-    FooterComponent, ForbiddenComponent, 
-    ErrorComponent, LogoutComponent, EditBookingComponent
+    AppComponent, CarFormComponent, 
+    EditBookingComponent, EditCarFormComponent, 
+    EditFormComponent, ErrorComponent, 
+    ForbiddenComponent, FooterComponent, 
+    HomeComponent, ListBookingsComponent, 
+    ListCarsComponent, ListUsersComponent, 
+    LoginComponent, LogoutComponent, 
+    NavbarComponent, NewBookingComponent,
+    ProfileComponent, UserFormComponent, 
   ],
   imports: [
-    BrowserModule, HttpClientModule,
-    FormsModule, AppRoutingModule,
+    AppRoutingModule, BrowserModule, 
+    HttpClientModule, FormsModule, 
     NgxPaginationModule
   ],
-  providers: [authInterceptorProviders, UserService, AuthService, CarService, BookingsService],
+  providers: [
+    authInterceptorProviders, AuthService,
+    BookingsService, CarService, UserService ],
+    
   bootstrap: [AppComponent]
 })
 export class AppModule {

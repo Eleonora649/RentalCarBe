@@ -8,20 +8,25 @@ import { Booking } from '../booking';
 import { BookingsService } from '../bookings.service';
 
 @Component({
-  selector: 'app-bookings',
-  templateUrl: './bookings.component.html',
-  styleUrls: ['./bookings.component.css']
-  })
-export class BookingsComponent implements OnInit {
+  selector: 'app-new-booking',
+  templateUrl: './new-booking.component.html',
+  styleUrls: ['./new-booking.component.css']
+})
+export class NewBookingComponent implements OnInit {
   booking: Booking;
   user: User;
 
-  constructor(private userService: UserService, private authService: AuthService, private bookingService: BookingsService, private router: Router) { 
+  constructor(private userService: UserService, 
+    private authService: AuthService, 
+    private bookingService: BookingsService, 
+    private router: Router) { 
     //this.route.getCurrentNavigation().extras.state
-    this.booking = new Booking();
+    
   }
 
   ngOnInit(): void {
+    this.booking = new Booking();
+    
     this.booking.car = new Car(); 
     this.booking.car = history.state.data.car;
     this.booking.user = new User();

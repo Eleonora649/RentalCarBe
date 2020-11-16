@@ -1,0 +1,32 @@
+.container {
+    padding: 90px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.title {
+    margin-bottom: 10px;
+}
+
+.table {   
+    padding: 20px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+  
+.table th, .table td, .table tr {    
+    border-left: 1px solid #DDD;
+    align-items: center;
+
+    flex: 0 1 auto;
+    align-self: auto;
+    text-align:center; 
+    margin: 1.5em;
+}
+
+button {
+    /*flex-direction: column;*/
+}

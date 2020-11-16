@@ -1,24 +1,22 @@
-<div class="col-md-12">
+<div class="container">
+    <div class="title">
+        <h3> Profile </h3>
+    </div>
     <table class="table">
-        <thead>
-            <tr>
-                <th scope="col"> Name </th>
-                <th scope="col"> Surname </th>
-                <th scope="col"> Date of birth </th>
-                <th scope="col"> Email </th>
-                <th scope="col"> Action </th>
-            </tr>
-        </thead> 
-        <tbody>
-            <tr scope="row">
-                <td> {{ user.name }} </td>
-                <td> {{ user.surname }} </td>
-                <td> {{ user.date }} </td>
-                <td> {{ user.email }} </td>
-                <td> 
-                    <button type="button" class="btn btn-primary" (click)=update(d)> Edit </button> &nbsp;
-                </td>
-            </tr>
-        </tbody>
+        <tr>
+            <th> Name </th>
+            <th> Surname </th>
+            <th> Date of birth </th>
+            <th> Email </th>
+        </tr>
+        
+        <tr>
+            <td> {{ user.name }} </td>
+            <td> {{ user.surname }} </td>
+            <td> {{ user.date }} </td>
+            <td> {{ user.email }} </td>
+        </tr>
+        
+        <button type="button" class="btn edit" (click)="edit(user)"> Edit </button> &nbsp;
     </table>
 </div>

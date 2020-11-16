@@ -1,0 +1,16 @@
+.container {
+    padding: 120px;
+}
+
+.table {   
+    padding: 20px;
+}
+  
+.table th, .table td { 
+    text-align: center; 
+    border-left: 1px solid #DDD;
+}
+  
+.table tr { 
+    border: 1px solid #DDD;   
+}

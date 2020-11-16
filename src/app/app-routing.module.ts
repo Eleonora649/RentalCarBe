@@ -10,12 +10,12 @@ import { ProfileComponent } from './users/profile/profile.component';
 
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { CarFormComponent } from './cars/car-form/car-form.component';
-import { BookingsComponent } from './bookings/newBooking/bookings.component';
+
 
 import { ListUsersComponent } from './users/list-users/list-users.component';
 import { ListCarsComponent } from './cars/list-cars/list-cars.component';
 import { ListBookingsComponent } from './bookings/list-bookings/list-bookings.component';
-
+import { NewBookingComponent } from './bookings/new-booking/new-booking.component';
 import { EditFormComponent } from './users/edit-form/edit-form.component';
 import { EditCarFormComponent } from './cars/editcarform/editcarform.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
@@ -30,7 +30,7 @@ const appRoutes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [RouteGuardService], data: { role: [Roles.customer] }},
   {path: 'users', component: UserFormComponent},
   {path: 'cars', component: CarFormComponent, canActivate: [RouteGuardService], data: { role: [Roles.admin] } },
-  {path: 'bookings', component: BookingsComponent, data: {} },
+  {path: 'bookings', component: NewBookingComponent, data: {} },
   {path: 'userlist', component: ListUsersComponent, canActivate: [RouteGuardService], data: { role: [Roles.admin] }},  
   {path: 'carslist', component: ListCarsComponent, canActivate: [RouteGuardService]},
   {path: 'bookingslist', component: ListBookingsComponent, canActivate: [RouteGuardService], data: { role: [Roles.admin] }},

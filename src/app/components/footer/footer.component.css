@@ -1,13 +1,5 @@
-footer p {
-	display: inline;
-	margin-left: 10px;
-}
-
-footer a {
-	color: inherit;
-}
-
 .footer {
+    display: flex;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -15,4 +7,14 @@ footer a {
     height: 30px;
     color: #333;
     background: #fff;
+    
+}
+
+.text-muted {
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+
+.footer a {
+    color: inherit;
 }

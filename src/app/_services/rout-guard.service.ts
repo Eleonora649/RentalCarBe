@@ -15,7 +15,6 @@ export class RouteGuardService implements CanActivate  {
   constructor(private tokenService: AuthService, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-
     this.token = this.tokenService.getAuthToken();
 
     const helper = new JwtHelperService();

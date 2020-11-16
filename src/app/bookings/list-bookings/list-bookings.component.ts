@@ -18,17 +18,20 @@ export class ListBookingsComponent implements OnInit {
   }
 
   retrieveBookings(): void {
-    this.bookingService.getAll().subscribe( b => {
-      this.bookings = b;
-    }, 
-      error => {console.log(error)
-    })
+    this.bookingService.getAll().subscribe( 
+      b => {
+        this.bookings = b;
+        console.log(b)
+      }, 
+      error => {
+        console.log(error)
+      }
+    )
   }
 
   delete(id: number){
     this.bookingService.delete(id).subscribe( 
       response => { 
-        console.log("ciao");
         this.retrieveBookings();
       })
   }

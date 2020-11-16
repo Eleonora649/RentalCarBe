@@ -14,11 +14,12 @@ export class EditFormComponent implements OnInit {
   constructor(private userService: UserService, private router: ActivatedRoute, private route: Router) { }
 
   ngOnInit(): void {
-    
+    this.user = new User();
+
     this.userService.get(this.router.snapshot.params['userId']).subscribe( 
-      res => { 
-        this.user = res;
-        console.log(res);
+      response => { 
+        this.user = response;
+        console.log(response);
       })
   }
 

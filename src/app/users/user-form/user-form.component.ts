@@ -23,7 +23,7 @@ export class UserFormComponent implements OnInit{
       result => {
         this.user = result;
         console.log("Utente aggiunto con successo");
-        this.route.navigate(['profile']);
+        this.route.navigate(['login']);
     })
   }
 }

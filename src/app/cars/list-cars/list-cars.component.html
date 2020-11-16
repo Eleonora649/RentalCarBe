@@ -1,28 +1,33 @@
-<br><div>
-    <button type="button" class="btn btn-success" (click)=addCar() style="position: absolute; right: 25px;"> Add car </button>
-</div> <br><br>
-<form class="form-inline" #bookingDate="ngForm">
-    <div class="form-group mb-2" > 
-        <label for="startBooking"> Data inizio: </label> &nbsp;&nbsp;
-        <input type="date" name="startBooking" #startBooking="ngModel" [(ngModel)]="booking.startBooking" class="form-control"/> &nbsp;&nbsp;
-        <label for="endOfBooking"> Data fine: </label> &nbsp;&nbsp;
-        <input type="date" name="endOfBooking" #endOfBooking="ngModel" [(ngModel)]="booking.endOfBooking" class="form-control"/>
-    </div>
-</form>
-<div class="col-md-12">
-    <table class="table">
-        <thead>
+<div class="flexForm">
+        
+        <div class="inputForm">
+            <button type="button" class="btn btn-success" (click)=addCar() style="position: absolute; right: 25px;"> Add car </button>
+        </div>
+        
+        <form class="form-inline" #bookingDate="ngForm">    
+
+            <div class="inputForm"> 
+                <label for="startBooking"> Data inizio: </label> &nbsp;&nbsp;
+                <input type="date" name="startBooking" #startBooking="ngModel" [(ngModel)]="booking.startBooking" class="form-control"/> &nbsp;&nbsp;
+            </div>
+
+            <div class="inputForm">   
+                <label for="endOfBooking"> Data fine: </label> &nbsp;&nbsp;
+                <input type="date" name="endOfBooking" #endOfBooking="ngModel" [(ngModel)]="booking.endOfBooking" class="form-control"/>
+            </div>
+        </form>
+    
+        <table class="table">
             <tr>
-                <th scope="col"> Manufacturer </th>
-                <th scope="col"> Model </th>
-                <th scope="col"> Matriculation </th>
-                <th scope="col"> License </th>
-                <th scope="col"> Category </th>
+                <th> Manufacturer </th>
+                <th> Model </th>
+                <th> Matriculation </th>
+                <th> License </th>
+                <th> Category </th>
                 <th> </th>
             </tr>
-        </thead> 
-        <tbody>
-            <tr *ngFor="let d of car" scope="row">
+        
+            <tr *ngFor="let d of car | paginate: { itemsPerPage: row, currentPage: pag }">
                 <td> {{ d.manufacturer }} </td>
                 <td> {{ d.carModel }} </td>
                 <td> {{ d.yearOfRegistration }} </td>
@@ -34,6 +39,9 @@
                     <button type="button" class="btn btn-danger" (click)=delete(d.idCar)> Delete </button> 
                 </td>
             </tr>
-        </tbody>
-    </table>    
+        </table> 
+        
+        <div class="clearfix">
+            <pagination-controls (pageChange)="pag = $event" previousLabel="Previous" nextLabel="Next"> </pagination-controls>
+        </div>   
 </div>

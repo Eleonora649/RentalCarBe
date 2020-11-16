@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
+import { Roles } from '../roles';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ export class LoginComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
   errorMessage = 'Wrong email or password';
+  
 
   constructor(private route: Router, private authService: AuthService) { }
 
@@ -22,7 +24,7 @@ export class LoginComponent implements OnInit {
       data => {
         console.log(data);
         this.isLoggedIn = true;
-        this.route.navigate(['/']);
+        this.route.navigate(['/carslist']);
       },
       err => {
         this.errorMessage = err.error.message;

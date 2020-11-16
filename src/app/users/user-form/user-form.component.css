@@ -1,8 +1,24 @@
-.flex-form-btn {
-    margin-right: 10px;
+.flexForm {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	padding: 120px;	
 }
 
-.flex-form-input {
-	flex: 1;
-	-webkit-flex: 1;
+.inputForm {	
+    padding: 20px;
+    width: 350px;
+	height: 90px;
+	flex-basis: auto;
+}
+
+.button {
+	margin-top: 15px;
+}
+
+@media (min-width: 600px) {
+	.col-25, .col-75 {
+	  width: 100%;
+	  margin-top: 0;
+	}
 }

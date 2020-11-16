@@ -1,33 +1,41 @@
-<div class="card my-5">
-  <div class="card-body">
-    <form (ngSubmit)="onSubmit()" #carForm="ngForm">
-      <h3> Car registration:</h3>
-      <div class="form-group">
-        <label for="yearOfRegistration"> Matriculation: </label>
-        <input type="text" id="yearOfRegistration" [(ngModel)]="car.yearOfRegistration" name="yearOfRegistration" #yearOfRegistration="ngModel" class="form-control" required/>     
-      </div>
-      <div class="form-group">
-        <label for="manufacturer"> Manufacturer: </label>
-        <input type="text" id="manufacturer" [(ngModel)]="car.manufacturer" name="manufacturer" #manufacturer="ngModel" class="form-control" required/>
-      </div>
-      <div class="form-group">
-        <label for="carModel"> Model: </label>
-        <input type="text" id="carModel" [(ngModel)]="car.carModel" name="carModel" #carModel="ngModel" class="form-control" required/>
-      </div>
-      <div class="form-group">
-        <label for="carLicensePlate"> License: </label>
-        <input type="text" id="carLicensePlate" [(ngModel)]="car.carLicensePlate" name="carLicensePlate" #carLicensePlate="ngModel" class="form-control" required/>
-      </div>
-      <div class="form-group">
-        <label for="category"> Category: </label>
-        <select class="form-control" name="category" [(ngModel)]="car.category" style="width: 50%">
-         <option *ngFor="let category of categories" value="{{ category.idCategory }}"> {{ category.name }} </option>
-        </select>
-
-      </div>
-      <div class="form-group">
-          <button type="submit" [disabled]="!carForm.form.valid" class="btn btn-primary">Submit</button>          
-      </div>
-      </form>
+<div class="flexForm">
+  
+  <div class="title">
+    <h3> Car registration:</h3>
   </div>
+
+  <form (ngSubmit)="onSubmit()" #carForm="ngForm">
+    
+    <div class="inputForm">
+      <label for="yearOfRegistration"> Matriculation: </label>
+      <input type="text" id="yearOfRegistration" [(ngModel)]="car.yearOfRegistration" name="yearOfRegistration" #yearOfRegistration="ngModel" class="form-control" required/>     
+    </div>
+
+    <div class="inputForm">
+      <label for="manufacturer"> Manufacturer: </label>
+      <input type="text" id="manufacturer" [(ngModel)]="car.manufacturer" name="manufacturer" #manufacturer="ngModel" class="form-control" required/>
+    </div>
+
+    <div class="inputForm">
+      <label for="carModel"> Model: </label>
+      <input type="text" id="carModel" [(ngModel)]="car.carModel" name="carModel" #carModel="ngModel" class="form-control" required/>
+    </div>
+
+    <div class="inputForm">
+      <label for="carLicensePlate"> License: </label>
+      <input type="text" id="carLicensePlate" [(ngModel)]="car.carLicensePlate" name="carLicensePlate" #carLicensePlate="ngModel" class="form-control" required/>
+    </div>
+
+    <div class="inputForm">
+      <label for="category"> Category: </label>
+      <select class="form-control" name="category" [(ngModel)]="car.category">
+        <option *ngFor="let category of categories" value="{{ category.idCategory }}"> {{ category.name }} </option>
+      </select>
+    </div>
+
+    <div class="inputForm">
+        <button type="submit" [disabled]="!carForm.form.valid" class="btn btn-primary">Submit</button>          
+    </div>
+
+  </form>
 </div>

@@ -1,20 +1,8 @@
 .navbar {
-    border: 1px solid cadetblue;
     display: flex;
+    border: 1px solid cadetblue;
     justify-content: space-between;
-}
-
-@media (max-width: 767px) {
-    .navbar {
-        flex-basis: 50%;
-    }
-}
-
-.home,
-.menu,
-.access { 
-    min-width: 100px; 
-    border: 1px; 
+    
 }
 
 .menu ul,
@@ -31,5 +19,5 @@
 .menu ul li a,
 .access ul li a {
     padding: 10px; 
-    display: block;
+    color: inherit;
 }

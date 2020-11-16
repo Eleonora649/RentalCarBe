@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -11,7 +12,9 @@ import { UserService } from '../user.service';
 export class ProfileComponent implements OnInit {
   user: User;
 
-  constructor(private userService: UserService, private authService: AuthService) { }
+  constructor(private userService: UserService, private authService: AuthService, private router: Router) { 
+    this.user = new User();
+  }
 
   ngOnInit() {
     this.getUser();
@@ -25,5 +28,10 @@ export class ProfileComponent implements OnInit {
         error => { console.log(error);
       }
     );
+  }
+
+  edit(user: User) {
+    console.log(`Modifica utente ${user.id}`)
+    this.router.navigate(['useredit', user.id]);
   }
 }

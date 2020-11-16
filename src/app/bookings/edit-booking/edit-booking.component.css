@@ -1,0 +1,27 @@
+.container {
+    padding: 120px;
+}
+
+.flexForm {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+
+}
+
+.inputForm {
+	flex-basis: auto;
+}
+
+.table {   
+    padding: 20px;
+}
+  
+.table th, .table td { 
+    text-align: center; 
+    border-left: 1px solid #DDD;
+}
+  
+.table tr { 
+    border: 1px solid #DDD;   
+}

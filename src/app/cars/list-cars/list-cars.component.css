@@ -1,0 +1,36 @@
+.flexForm {
+    padding: 20px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    max-width: 100%;
+    height:auto;
+}
+
+.flexForm {
+    flex-flow: column nowrap;
+}
+
+form.form-inline {
+    justify-content: center;
+}
+
+.inputForm {
+    flex-basis: auto;
+    margin-top: 50px;
+}
+
+.table {   
+    padding: 20px;
+    margin-top: 30px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+  
+.table th, .table td, .table tr { 
+    border-left: 1px solid #DDD;
+}
+  
+button{
+    flex-direction: row;
+}
